@@ -1,0 +1,7 @@
+.warning-container {
+  color: red;
+  background-color: yellow;
+  width: 200px;
+  padding: 20px;
+  text-align: center;
+}
