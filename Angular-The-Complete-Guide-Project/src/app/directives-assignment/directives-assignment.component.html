@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <button class="btn btn-primary" (click)="onDisplayDetails()">{{ buttonText }}</button>
+      <p *ngIf="displayDetails">The secret number is 42!</p>
+      <ul>
+        <li
+          *ngFor="let action of displayDetailsActions; let i = index"
+          [ngStyle]="{ 'background-color': getDisplayColor(i) }"
+        >
+          <span [ngClass]="{ 'color-white': i >= 4 }">{{ action }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
