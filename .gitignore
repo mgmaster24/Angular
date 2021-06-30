@@ -1,2 +1,6 @@
 cmp-databinding*
 angular-tour-of-heroes
+directive*
+services*
+routing-*
+obs-*

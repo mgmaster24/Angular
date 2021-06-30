@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RecipeService } from 'src/app/shared/services/recipe.service';
 import { Recipe } from '../recipe.model';
 
 @Component({
@@ -7,24 +9,20 @@ import { Recipe } from '../recipe.model';
   styleUrls: ['./recipe-list.component.css'],
 })
 export class RecipeListComponent implements OnInit {
-  recipes: Recipe[] = [
-    new Recipe(
-      'A test recipe',
-      'This is a test',
-      // tslint:disable-next-line: max-line-length
-      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=960,872'
-    ),
-    new Recipe(
-      'A test recipe 2',
-      'This is a test 2',
-      // tslint:disable-next-line: max-line-length
-      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=960,872'
-    ),
-  ];
+  @Output() recipeSelected = new EventEmitter<Recipe>();
+  recipes: Recipe[];
 
-  constructor() {}
+  constructor(
+    private recipeService: RecipeService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.recipes = this.recipeService.recipes;
+  }
 
-  onRecipeClicked(event) {}
+  onNewRecipeClicked() {
+    this.router.navigate(['new'], { relativeTo: this.activatedRoute });
+  }
 }
